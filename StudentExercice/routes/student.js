@@ -70,21 +70,20 @@ router.delete('/delete/:id',(req,res,next)=>{
 })
 
 
-//display students age >18
 
- 
+//add +2 to  students age >18  name starts with a  
 router.get('/gte/',(req,res)=>{
-    
 
-  Student.find({ "Age" : { $gte: 18 } },(err,Student)=>{
+  Student.find({ "Age" : { $gte: 18 },"Name":{$regex:/^A/}},{$inc:{Note:2} },(err,Student)=>{
     if(err) console.log("error : ",err);
-    else{           
-        
+    else{       
 
       res.json(Student);
     }
   })
 })
-//display students note >18  sorted by name
+ 
 
+ 
+ 
 module.exports = router;
